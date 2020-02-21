@@ -32,8 +32,8 @@ export class ListPage implements OnInit {
     for(let item of this.goods) {
       if(item.id == id) {
         this.neededGood = item.goods;
+        console.log(this.neededGood);
         sessionStorage.setItem(id, JSON.stringify(item.goods));
-        console.log(item.goods);
       }
     }
   }

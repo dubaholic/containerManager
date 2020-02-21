@@ -30,6 +30,10 @@ export class HomePage {
     //   this.fillGrid();
     // });
 
+    /*
+      Fill the grid with the json that contains the list with all of the spots on the grid with in each spot a list of different goods. 
+    */
+
     this.materialService.getListOfMaterials().subscribe((result) => {
       this.allMaterials = result;
       this.fillGrid();
@@ -76,7 +80,7 @@ export class HomePage {
   }
 
   showDetails(id: any) {
-    this.router.navigateByUrl('/details/'+id);
+    this.router.navigateByUrl('/detailsitem/'+id);
   }
 
   amount(id: any) {

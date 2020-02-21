@@ -26,8 +26,11 @@ export class DetailsPage implements OnInit {
   ngOnInit() {
     this.listId = this.route.snapshot.paramMap.get('listid');
     this.id = this.route.snapshot.paramMap.get('id');
-    // this.getMaterialData();
-    this.getMaterialDataFromList();
+    
+    //this.getMaterialData();
+
+    /*Call of the this method to get the list on each spot */
+     this.getMaterialDataFromList();
   }
 
   switchPosition(numberOfplaces: any) {
@@ -69,16 +72,19 @@ export class DetailsPage implements OnInit {
     }
   }
 
+  /*Method to retrieve all the data from a json which just contains an array of all the different goods*/
   getMaterialData() {
-    this.materialsService.getListOfMaterials().subscribe((data) => {
+    this.materialsService.getMaterials().subscribe((data) => {
       data.forEach(element => {
         if (element.id == this.id) {
           this.material = element;
+          console.log(this.material);
         }
       });
     })
   }
 
+  /*Method to retrieve all the data from a json where each spot contains a list of goods */
   getMaterialDataFromList() {
     this.materialsService.getListOfMaterials().subscribe((data) => {
       data.forEach(element => {
@@ -86,7 +92,8 @@ export class DetailsPage implements OnInit {
           this.material = element;
           for(let item of this.material.goods) {
             if(item.goodId = this.id) {
-              return item;
+             this.material = item
+              return this.material;
             }
           }
         }

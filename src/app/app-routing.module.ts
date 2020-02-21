@@ -8,6 +8,9 @@ const routes: Routes = [
     path: 'details/:listid/:id', loadChildren: './pages/details/details.module#DetailsPageModule'
   },
   {
+    path: 'detailsitem/:id', loadChildren: './pages/details/details.module#DetailsPageModule'
+  },
+  {
     path: 'list/:id',
     loadChildren: () => import('./pages/list/list.module').then( m => m.ListPageModule)
   },
