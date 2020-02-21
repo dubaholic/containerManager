@@ -79,37 +79,40 @@ export class DetailsPage implements OnInit {
     this.listId = this.route.snapshot.paramMap.get('listid');
     this.grid = JSON.parse(sessionStorage.getItem("grid"));
     for (let item of this.grid) {
-      console.log(item);
       var changePosition = 0;
       if (item != null) {
         if (item.id == this.listId) {
-          if (numberOfplaces > 0) {
-            changePosition = item.position + numberOfplaces;
-            console.log(changePosition);
-            if (this.grid[changePosition] == null && changePosition <=11) {
-              this.grid[item.position] = null;
-              item.position = changePosition;
-              this.grid[changePosition] = item;
-              sessionStorage.setItem("grid", JSON.stringify(this.grid));
-              break;
+          for(let good of item.goods) {
+            if(good.goodId == this.id) {
+              console.log(good);
+              if (numberOfplaces > 0) {
+                changePosition = item.position + numberOfplaces;
+                console.log(changePosition);
+                if (this.grid[changePosition] == null && changePosition <=11) {
+                  this.grid[item.position] = null;
+                  item.position = changePosition;
+                  this.grid[changePosition] = item;
+                  sessionStorage.setItem("grid", JSON.stringify(this.grid));
+                  break;
+                }
+                if (this.grid[changePosition] != null) {
+                  console.log("Occupied");
+                }
+              } else {
+                changePosition = item.position + numberOfplaces;
+                console.log(changePosition);
+                if (this.grid[changePosition] == null && changePosition <=11) {
+                  this.grid[item.position] = null;
+                  item.position = changePosition;
+                  this.grid[changePosition] = item;
+                  sessionStorage.setItem("grid", JSON.stringify(this.grid));
+                }
+                if (this.grid[changePosition] != null) {
+                  console.log("Occupied");
+                }
+              }
             }
-            if (this.grid[changePosition] != null) {
-              console.log("Occupied");
-            }
-          } else {
-            changePosition = item.position + numberOfplaces;
-            console.log(changePosition);
-            if (this.grid[changePosition] == null && changePosition <=11) {
-              this.grid[item.position] = null;
-              item.position = changePosition;
-              this.grid[changePosition] = item;
-              console.log(this.grid);
-              sessionStorage.setItem("grid", JSON.stringify(this.grid));
-            }
-            if (this.grid[changePosition] != null) {
-              console.log("Occupied");
-            }
-          } 
+          }
         }
       }
     }

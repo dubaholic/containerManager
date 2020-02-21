@@ -25,19 +25,19 @@ export class HomePage {
   }
 
   getAllMaterials() {
-    // this.materialService.getMaterials().subscribe((result) => {
-    //   this.allMaterials = result;
-    //   this.fillGrid();
-    // });
+    this.materialService.getMaterials().subscribe((result) => {
+      this.allMaterials = result;
+      this.fillGrid();
+    });
 
     /*
       Fill the grid with the json that contains the list with all of the spots on the grid with in each spot a list of different goods. 
     */
 
-    this.materialService.getListOfMaterials().subscribe((result) => {
-      this.allMaterials = result;
-      this.fillGrid();
-    })
+    // this.materialService.getListOfMaterials().subscribe((result) => {
+    //   this.allMaterials = result;
+    //   this.fillGrid();
+    // })
     
   }
 
