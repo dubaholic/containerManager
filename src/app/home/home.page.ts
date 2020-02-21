@@ -44,7 +44,8 @@ export class HomePage {
   search() {
     this.grid = JSON.parse(sessionStorage.getItem("grid"));
     this.searchGrid = [];
-    for(let material of this.grid) {
+    for(var i = 0; i <= 10; i++) {
+      var material = this.grid[i];
       if(material != null) {
         switch(this.selectedFilter) {
           case 'nameClient':
@@ -55,11 +56,13 @@ export class HomePage {
             break;
           case 'id':
             if(this.grid[material.position].id == this.searchedValue) {
+              this.searchGrid[material.position] = material;
               console.log(material);
             }
             break;
           case 'nameGoods':
             if(this.grid[material.position].nameGoods == this.searchedValue) {
+              this.searchGrid[material.position] = material;
               console.log(material);
             }
             break;
@@ -67,9 +70,8 @@ export class HomePage {
             console.log("filter failed");
             break;
         }
-      } 
-      this.searchGrid.push(null); 
-    }
+      } this.searchGrid.push(null);
+     }
     console.log(this.searchGrid);
     sessionStorage.setItem("searchGrid", JSON.stringify(this.searchGrid));
     this.fillSearchGrid();
