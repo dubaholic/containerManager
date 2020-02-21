@@ -19,7 +19,8 @@
 	{
 		"id": 7,
 		"goods": [
-			{"goodId": 1, "nameClient": "Company2", "nameGoods": "GoodsA", "amount": 5 }
+			{"goodId": 1, "nameClient": "Company2", "nameGoods": "GoodsA", "amount": 5 },
+			{"goodId": 4, "nameClient": "Company2", "nameGoods": "GoodsA", "amount": 5 }
 			],
 		"position": 7,
 		"amount":3

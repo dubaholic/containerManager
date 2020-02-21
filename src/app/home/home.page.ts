@@ -17,7 +17,7 @@ export class HomePage {
   searchGrid: any[8] = [];
 
   selectedFilter: any;
-  searchedValue:any;
+  searchedValue: any;
 
   constructor(private materialService: MaterialsService, private router: Router) {
     this.selectedFilter = 'nameClient';
@@ -25,45 +25,43 @@ export class HomePage {
   }
 
   getAllMaterials() {
-    this.materialService.getMaterials().subscribe((result) => {
-      this.allMaterials = result;
-      this.fillGrid();
-    });
+    // this.materialService.getMaterials().subscribe((result) => {
+    //   this.allMaterials = result;
+    //   this.fillGrid();
+    // });
 
     /*
       Fill the grid with the json that contains the list with all of the spots on the grid with in each spot a list of different goods. 
     */
 
-    // this.materialService.getListOfMaterials().subscribe((result) => {
-    //   this.allMaterials = result;
-    //   this.fillGrid();
-    // })
-    
+    this.materialService.getListOfMaterials().subscribe((result) => {
+      this.allMaterials = result;
+      this.fillGrid();
+    })
+
   }
 
   search() {
     this.grid = JSON.parse(sessionStorage.getItem("grid"));
     this.searchGrid = [];
-    for(var i = 0; i <= 10; i++) {
+    for (var i = 0; i <= 10; i++) {
       var material = this.grid[i];
-      if(material != null) {
-        switch(this.selectedFilter) {
+      if (material != null) {
+        switch (this.selectedFilter) {
           case 'nameClient':
-            if(this.grid[material.position].nameClient == this.searchedValue) {
+            if (this.grid[material.position].nameClient == this.searchedValue) {
               this.searchGrid[material.position] = material;
               console.log(material);
             }
             break;
           case 'id':
-            if(this.grid[material.position].id == this.searchedValue) {
+            if (this.grid[material.position].id == this.searchedValue) {
               this.searchGrid[material.position] = material;
-              console.log(material);
             }
             break;
           case 'nameGoods':
-            if(this.grid[material.position].nameGoods == this.searchedValue) {
+            if (this.grid[material.position].nameGoods == this.searchedValue) {
               this.searchGrid[material.position] = material;
-              console.log(material);
             }
             break;
           default:
@@ -71,35 +69,76 @@ export class HomePage {
             break;
         }
       } this.searchGrid.push(null);
-     }
+    }
     console.log(this.searchGrid);
     sessionStorage.setItem("searchGrid", JSON.stringify(this.searchGrid));
     this.fillSearchGrid();
   }
 
+  /* This function allows to search through individual items in the lists on a certain spot*/
+  searchList() {
+    this.grid = JSON.parse(sessionStorage.getItem("grid"));
+    this.searchGrid = [];
+    for (var i = 0; i <= 10; i++) {
+      var material = this.grid[i];
+      if (material != null) {
+        for (var j = 0; j <= 10; j++) {
+          var good = material.goods[j];
+          if (good != null) {
+            console.log(good.goodId);
+            switch (this.selectedFilter) {
+              case 'nameClient':
+                if (good.nameClient == this.searchedValue) {
+                  this.searchGrid[i] = material;
+                }
+                break;
+              case 'id':
+                if (good.goodId == this.searchedValue) {
+                  this.searchGrid[i] = material;
+                  console.log(this.searchGrid[i]);
+                }
+                break;
+              case 'nameGoods':
+                if (good.nameGoods == this.searchedValue) {
+                  this.searchGrid[i] = material;
+                }
+                break;
+              default:
+                console.log("filter failed");
+                break;
+            }
+          }
+
+        }
+      } this.searchGrid.push(null);
+    }
+    sessionStorage.setItem("searchGrid", JSON.stringify(this.searchGrid));
+    this.fillSearchGrid();
+  }
+
   showList(id: any) {
-    this.router.navigateByUrl('/list/'+id);
+    this.router.navigateByUrl('/list/' + id);
   }
 
   showDetails(id: any) {
-    this.router.navigateByUrl('/detailsitem/'+id);
+    this.router.navigateByUrl('/detailsitem/' + id);
   }
 
   amount(id: any) {
     this.grid = JSON.parse(sessionStorage.getItem("grid"));
-    if(id != null) {
-      for(let item of this.allMaterials) {
-        if(item != null && item.id == id) {
+    if (id != null) {
+      for (let item of this.allMaterials) {
+        if (item != null && item.id == id) {
           var total = 0;
-          for(let good of item.goods) {
-            total +=good.amount;
+          for (let good of item.goods) {
+            total += good.amount;
           }
           return total;
         }
       }
-    } 
+    }
     return 0;
-    
+
   }
 
   fillGrid() {
@@ -116,7 +155,7 @@ export class HomePage {
       }
       sessionStorage.setItem("grid", JSON.stringify(this.grid));
     }
-    if(this.grid.length > 12) {
+    if (this.grid.length > 12) {
       sessionStorage.clear();
     }
   }
@@ -135,7 +174,7 @@ export class HomePage {
       }
       sessionStorage.setItem("searchGrid", JSON.stringify(this.grid));
     }
-    if(this.grid.length > 12) {
+    if (this.grid.length > 12) {
       sessionStorage.clear();
     }
   }
