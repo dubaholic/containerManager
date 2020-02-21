@@ -21,24 +21,26 @@ export class HomePage {
 
   constructor(private materialService: MaterialsService, private router: Router) {
     this.selectedFilter = 'nameClient';
-    this.getAllMaterials();
+    // this.getAllMaterials();
+
+    this.getAllMaterialsList();
   }
 
   getAllMaterials() {
-    // this.materialService.getMaterials().subscribe((result) => {
-    //   this.allMaterials = result;
-    //   this.fillGrid();
-    // });
+    this.materialService.getMaterials().subscribe((result) => {
+      this.allMaterials = result;
+      this.fillGrid();
+    });
+  }
 
-    /*
+  /*
       Fill the grid with the json that contains the list with all of the spots on the grid with in each spot a list of different goods. 
     */
-
+  getAllMaterialsList() {
     this.materialService.getListOfMaterials().subscribe((result) => {
       this.allMaterials = result;
       this.fillGrid();
     })
-
   }
 
   search() {
@@ -51,7 +53,6 @@ export class HomePage {
           case 'nameClient':
             if (this.grid[material.position].nameClient == this.searchedValue) {
               this.searchGrid[material.position] = material;
-              console.log(material);
             }
             break;
           case 'id':
@@ -70,7 +71,6 @@ export class HomePage {
         }
       } this.searchGrid.push(null);
     }
-    console.log(this.searchGrid);
     sessionStorage.setItem("searchGrid", JSON.stringify(this.searchGrid));
     this.fillSearchGrid();
   }
@@ -85,7 +85,6 @@ export class HomePage {
         for (var j = 0; j <= 10; j++) {
           var good = material.goods[j];
           if (good != null) {
-            console.log(good.goodId);
             switch (this.selectedFilter) {
               case 'nameClient':
                 if (good.nameClient == this.searchedValue) {

@@ -27,10 +27,10 @@ export class DetailsPage implements OnInit {
     this.listId = this.route.snapshot.paramMap.get('listid');
     this.id = this.route.snapshot.paramMap.get('id');
     
-    this.getMaterialData();
+    // this.getMaterialData();
 
     /*Call of the this method to get the list on each spot */
-    //  this.getMaterialDataFromList();
+     this.getMaterialDataFromList();
   }
 
   /*Method to switch locations of certain goods where there is only 1 good on each spot */

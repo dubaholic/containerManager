@@ -19,7 +19,6 @@
   </ion-header>
 <div class="square-container">
     <div class="square" *ngFor="let point of grid">
-      <!-- <ion-button *ngIf="point!=null" class="content" href="/details/{{point.id}}">{{point.id}}</ion-button> -->
       <!-- <ion-button *ngIf="point!=null" class="content" (click)="showDetails(point.id)">{{point.amount}}</ion-button> -->
       <ion-button *ngIf="point!=null" class="content" (click)="showList(point.id)" >{{amount(point.id)}}</ion-button>
       <ion-button disabled *ngIf="point==null" class="content">Empty lot</ion-button>
