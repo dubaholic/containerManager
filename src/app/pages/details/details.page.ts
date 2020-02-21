@@ -33,6 +33,7 @@ export class DetailsPage implements OnInit {
      this.getMaterialDataFromList();
   }
 
+  /*Method to switch locations of certain goods where there is only 1 good on each spot */
   switchPosition(numberOfplaces: any) {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.grid = JSON.parse(sessionStorage.getItem("grid"));
@@ -40,6 +41,48 @@ export class DetailsPage implements OnInit {
       var changePosition = 0;
       if (item != null) {
         if (item.id == this.id) {
+          if (numberOfplaces > 0) {
+            changePosition = item.position + numberOfplaces;
+            console.log(changePosition);
+            if (this.grid[changePosition] == null && changePosition <=11) {
+              this.grid[item.position] = null;
+              item.position = changePosition;
+              this.grid[changePosition] = item;
+              sessionStorage.setItem("grid", JSON.stringify(this.grid));
+              break;
+            }
+            if (this.grid[changePosition] != null) {
+              console.log("Occupied");
+            }
+          } else {
+            changePosition = item.position + numberOfplaces;
+            console.log(changePosition);
+            if (this.grid[changePosition] == null && changePosition <=11) {
+              this.grid[item.position] = null;
+              item.position = changePosition;
+              this.grid[changePosition] = item;
+              console.log(this.grid);
+              sessionStorage.setItem("grid", JSON.stringify(this.grid));
+            }
+            if (this.grid[changePosition] != null) {
+              console.log("Occupied");
+            }
+          } 
+        }
+      }
+    }
+  }
+
+  /*Method to switch locations of certain goods where there are multiple goods on the spot */
+  switchPositionList(numberOfplaces: any) {
+    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.listId = this.route.snapshot.paramMap.get('listid');
+    this.grid = JSON.parse(sessionStorage.getItem("grid"));
+    for (let item of this.grid) {
+      console.log(item);
+      var changePosition = 0;
+      if (item != null) {
+        if (item.id == this.listId) {
           if (numberOfplaces > 0) {
             changePosition = item.position + numberOfplaces;
             console.log(changePosition);

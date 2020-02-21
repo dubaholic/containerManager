@@ -37,7 +37,7 @@
       <p>{{reportedDamage}}</p>
     </ion-item>
   </ion-list>
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col col-15>
         <ion-button color="warning" (click)="switchPosition(-4)" href="/">
@@ -70,6 +70,44 @@
     <ion-row>
       <ion-col col-15>
         <ion-button color="warning" (click)="switchPosition(4)" href="/">
+          <ion-icon name="arrow-down-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col col-15>
+        <ion-button color="warning" (click)="switchPositionList(-4)" href="/">
+          <ion-icon name="arrow-up-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <br>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-30>
+        <ion-button color="warning" (click)="switchPositionList(-1)" href="/">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col col-30>
+        <ion-button color="warning" (click)="switchPositionList(1)" href="/">
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <br>
+    </ion-row>
+    <ion-row>
+      <ion-col col-15>
+        <ion-button color="warning" (click)="switchPositionList(4)" href="/">
           <ion-icon name="arrow-down-outline"></ion-icon>
         </ion-button>
       </ion-col>
