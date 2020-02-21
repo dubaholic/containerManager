@@ -1,0 +1,28 @@
+<ion-header translucent>
+  <ion-toolbar>
+  </ion-toolbar>
+  <ion-title size="medium">Overview of all the goods in the yard</ion-title>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-header>
+    <ion-item>
+      <ion-label>Search on:</ion-label>
+      <ion-select [(ngModel)]="selectedFilter" placeholder="select a search filter">
+        <ion-select-option value="nameClient">Company name</ion-select-option>
+        <ion-select-option value="id">ID</ion-select-option>
+        <ion-select-option value="nameGoods">Name of the goods</ion-select-option>
+      </ion-select>
+      <ion-input placeholder="Search:" [(ngModel)]="searchedValue"></ion-input>
+      <ion-button size="medium" (click)="search()" >Search</ion-button>
+    </ion-item>
+  </ion-header>
+<div class="square-container">
+    <div class="square" *ngFor="let point of grid">
+      <!-- <ion-button *ngIf="point!=null" class="content" href="/details/{{point.id}}">{{point.id}}</ion-button> -->
+      <!-- <ion-button *ngIf="point!=null" class="content" (click)="showDetails(point.id)">{{point.Amount}}</ion-button> -->
+      <ion-button *ngIf="point!=null" class="content" (click)="showList(point.id)" >{{amount(point.id)}}</ion-button>
+      <ion-button disabled *ngIf="point==null" class="content">Empty lot</ion-button>
+    </div>
+  </div>
+</ion-content>

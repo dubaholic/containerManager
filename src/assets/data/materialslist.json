@@ -1,0 +1,36 @@
+[
+    {
+		"id": 1,
+		"goods": [
+			{"goodId": 1, "nameClient": "Company2", "namegoods": "GoodsA", "amount": 3 }
+			],
+		"position": 1,
+		"amount":3
+	},
+	{
+		"id": 3,
+		"goods": [
+			{"goodId": 1, "nameClient": "Company2", "namegoods": "GoodsA", "amount": 4 },
+			{"goodId": 2, "nameClient": "Company3", "namegoods": "GoodsB", "amount": 2 }
+			],
+		"position": 3,
+		"amount":3
+	},
+	{
+		"id": 7,
+		"goods": [
+			{"goodId": 1, "nameClient": "Company2", "namegoods": "GoodsA", "amount": 5 }
+			],
+		"position": 7,
+		"amount":3
+	},
+	{
+		"id": 11,
+		"goods": [
+			{"goodId": 1, "nameClient": "Company2", "namegoods": "GoodsA", "amount": 4 },
+			{"goodId": 2, "nameClient": "Company3", "namegoods": "GoodsB", "amount": 2 }
+			],
+		"position": 7,
+		"amount":2
+	}
+]

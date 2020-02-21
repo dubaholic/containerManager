@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="header" slot="start">
+      <ion-back-button color="dark" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Details of good</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>Id of the goods: {{id}}</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>
+        <p>Name of the client: </p>
+      </ion-label>
+      <p>{{material.nameClient}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <p>Name of the goods:</p>
+      </ion-label>
+      <p>{{material.nameGoods}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <p>Amount: </p>
+      </ion-label>
+      <p>{{material.Amount}}</p>
+    </ion-item>
+    <ion-item *ngIf="reportedDamage.length >0">
+      <ion-label>
+        <p>Any damage:</p>
+      </ion-label>
+      <p>{{reportedDamage}}</p>
+    </ion-item>
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-15>
+        <ion-button color="warning" (click)="switchPosition(-4)" href="/">
+          <ion-icon name="arrow-up-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <br>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-30>
+        <ion-button color="warning" (click)="switchPosition(-1)" href="/">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col col-30>
+        <ion-button color="warning" (click)="switchPosition(1)" href="/">
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <br>
+    </ion-row>
+    <ion-row>
+      <ion-col col-15>
+        <ion-button color="warning" (click)="switchPosition(4)" href="/">
+          <ion-icon name="arrow-down-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-30>
+        <ion-button color="danger" (click)="showAlert()"> Damage</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
