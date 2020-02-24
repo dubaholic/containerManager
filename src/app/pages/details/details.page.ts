@@ -84,10 +84,8 @@ export class DetailsPage implements OnInit {
         if (item.id == this.listId) {
           for(let good of item.goods) {
             if(good.goodId == this.id) {
-              console.log(good);
               if (numberOfplaces > 0) {
                 changePosition = item.position + numberOfplaces;
-                console.log(changePosition);
                 if (this.grid[changePosition] == null && changePosition <=11) {
                   this.grid[item.position] = null;
                   item.position = changePosition;
@@ -100,7 +98,6 @@ export class DetailsPage implements OnInit {
                 }
               } else {
                 changePosition = item.position + numberOfplaces;
-                console.log(changePosition);
                 if (this.grid[changePosition] == null && changePosition <=11) {
                   this.grid[item.position] = null;
                   item.position = changePosition;
@@ -110,8 +107,8 @@ export class DetailsPage implements OnInit {
                 if (this.grid[changePosition] != null) {
                   console.log("Occupied");
                 }
-              }
-            }
+              } 
+            } 
           }
         }
       }
@@ -149,7 +146,6 @@ export class DetailsPage implements OnInit {
   
 
   async showAlert() {
-
     const alert = await this.alertController.create({
       header: "Report Damage",
       message: "Report any damage to the goods",

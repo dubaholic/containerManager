@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class MaterialsService {
   materialCount: number;
   materials: any = [];
+  
   materialsData = './assets/data/materials.json';
   materialsDataList = './assets/data/materialslist.json';
   constructor(private http: HttpClient) { }
