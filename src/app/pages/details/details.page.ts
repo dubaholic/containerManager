@@ -35,7 +35,7 @@ export class DetailsPage implements OnInit {
 
   /*Method to switch locations of certain goods where there is only 1 good on each spot */
   switchPosition(numberOfplaces: any) {
-    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.id = parseInt(this.route.snapshot.paramMap.get('listid'));
     this.grid = JSON.parse(sessionStorage.getItem("grid"));
     for (let item of this.grid) {
       var changePosition = 0;
@@ -82,10 +82,12 @@ export class DetailsPage implements OnInit {
       var changePosition = 0;
       if (item != null) {
         if (item.id == this.listId) {
+          console.log(item);
           for(let good of item.goods) {
             if(good.goodId == this.id) {
               if (numberOfplaces > 0) {
                 changePosition = item.position + numberOfplaces;
+                console.log(changePosition);
                 if (this.grid[changePosition] == null && changePosition <=11) {
                   this.grid[item.position] = null;
                   item.position = changePosition;
@@ -95,9 +97,11 @@ export class DetailsPage implements OnInit {
                 }
                 if (this.grid[changePosition] != null) {
                   console.log("Occupied");
+                  break;
                 }
               } else {
                 changePosition = item.position + numberOfplaces;
+                console.log(changePosition);
                 if (this.grid[changePosition] == null && changePosition <=11) {
                   this.grid[item.position] = null;
                   item.position = changePosition;

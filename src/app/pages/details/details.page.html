@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons class="header" slot="start">
-      <ion-back-button color="dark" defaultHref="/"></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button class="header" color="light" defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Details of good</ion-title>
+    <ion-title class="header">Details of good:</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,15 +20,21 @@
     </ion-item>
     <ion-item>
       <ion-label>
-        <p>Name of the goods:</p>
+        <p>Commodity </p>
       </ion-label>
-      <p>{{material.nameGoods}}</p>
+      <p>{{material.commodity}}</p>
     </ion-item>
     <ion-item>
       <ion-label>
-        <p>Amount: </p>
+        <p>weight: </p>
       </ion-label>
-      <p>{{material.amount}}</p>
+      <p>{{material.weight}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <p>Harbor: </p>
+      </ion-label>
+      <p>{{material.harbor}}</p>
     </ion-item>
     <ion-item *ngIf="reportedDamage.length >0">
       <ion-label>
@@ -38,7 +44,7 @@
     </ion-item>
   </ion-list>
 
-  <!-- <ion-grid>
+  <ion-grid>
     <ion-row>
       <ion-col col-15>
         <ion-button color="warning" (click)="switchPosition(-4)" href="/">
@@ -75,9 +81,9 @@
         </ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid> -->
+  </ion-grid>
   
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col col-15>
         <ion-button color="warning" (click)="switchPositionList(-4)" href="/">
@@ -97,7 +103,7 @@
         </ion-button>
       </ion-col>
       <ion-col col-30>
-        <ion-button color="warning" (click)="switchPositionList(1)" href="/">
+        <ion-button color="warning" (click)="switchPositionList(1)">
           <ion-icon name="arrow-forward-outline"></ion-icon>
         </ion-button>
       </ion-col>
@@ -109,12 +115,12 @@
     </ion-row>
     <ion-row>
       <ion-col col-15>
-        <ion-button color="warning" (click)="switchPositionList(4)" href="/">
+        <ion-button color="warning" (click)="switchPositionList(4)">
           <ion-icon name="arrow-down-outline"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
   <br>
 
   <ion-grid>

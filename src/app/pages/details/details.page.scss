@@ -14,5 +14,31 @@ ion-button {
     font-size: 20px;
     
 }
+ion-title.header{
+    color: white;
+}
+
+ion-toolbar {
+    --background: #064247 ;
+}
+ion-toolbar.footer {
+    --background: white ;
+}
+
+ion-back-button.header,
+ion-buttons.header,
+ion-menu-button.header {
+    color: white;
+}
+
+ion-card-header,
+ion-item,
+ion-list-header,
+p, ion-label {
+    color: #064247; 
+}
+
+
+
 
   

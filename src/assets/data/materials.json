@@ -2,36 +2,41 @@
     {
 		"id": 1,
 		"nameClient": "Company2",
-		"nameGoods": "Container B",
-		"amount": 4,
-		"position": 1
+		"commodity ": "Container B",
+		"weight": 4,
+		"position": 1,
+		"harbor": "Antwerp"
 	},
     {
 		"id": 2,
 		"nameClient": "Company3",
-		"nameGoods": "Container C",
-		"amount": 4,
-		"position": 2
+		"commodity ": "Container C",
+		"weight": 4,
+		"position": 2,
+		"harbor": "Hamburg"
 	},
 	{
 		"id": 5,
 		"nameClient": "Company4",
-		"nameGoods": "Container D",
-		"amount": 5,
-		"position": 5
+		"commodity ": "Container D",
+		"weight": 5,
+		"position": 5,
+		"harbor": "Rotterdam"
 	},
 	{
 		"id": 7,
 		"nameClient": "Company5",
-		"nameGoods": "Container E",
-		"amount": 5,
-		"position": 7
+		"commodity ": "Container E",
+		"weight": 5,
+		"position": 7,
+		"harbor": "Rotterdam"
 	},
 	{
 		"id": 11,
 		"nameClient": "Company5",
-		"nameGoods": "Container E",
-		"amount": 5,
-		"position": 11
+		"commodity ": "Container E",
+		"weight": 5,
+		"position": 11,
+		"harbor": "Antwerp"
 	}
 ]

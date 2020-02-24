@@ -2,33 +2,33 @@
     {
 		"id": 1,
 		"goods": [
-			{"goodId": 1, "nameClient": "Company2", "nameGoods": "GoodsA", "amount": 3 }
+			{"goodId": 1, "nameClient": "Company2", "commodity": "GoodsA", "weight": 3, "harbor": "philadelphia" }
 			],
 		"position": 1,
-		"amount":3
+		"weight":3
 	},
 	{
 		"id": 3,
 		"goods": [
-			{"goodId": 1, "nameClient": "Company1", "nameGoods": "GoodsD", "amount": 4 }
+			{"goodId": 1, "nameClient": "Company1", "commodity": "GoodsD", "weight": 4, "harbor": "Singapore" }
 			],
 		"position": 3,
-		"amount":3
+		"weight":3
 	},
 	{
 		"id": 7,
 		"goods": [
-			{"goodId": 1, "nameClient": "Company3", "nameGoods": "GoodsC", "amount": 5 }
+			{"goodId": 1, "nameClient": "Company3", "commodity": "GoodsC", "weight": 5, "harbor": "Hamburg" }
 			],
 		"position": 7,
-		"amount":3
+		"weight":3
 	},
 	{
 		"id": 11,
 		"goods": [
-			{"goodId": 1, "nameClient": "Company4", "nameGoods": "GoodsB", "amount": 4 }
+			{"goodId": 1, "nameClient": "Company4", "commodity": "GoodsB", "weight": 4, "harbor": "Singapore" }
 			],
 		"position": 7,
-		"amount":2
+		"weight":2
 	}
 ]

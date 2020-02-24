@@ -60,8 +60,19 @@ export class HomePage {
               this.searchGrid[material.position] = material;
             }
             break;
-          case 'nameGoods':
-            if (this.grid[material.position].nameGoods == this.searchedValue) {
+          case 'commodity':
+            if (this.grid[material.position].commodity  == this.searchedValue) {
+              
+              this.searchGrid[material.position] = material;
+            }
+            break;
+            case 'weight':
+            if (this.grid[material.position].weight  == this.searchedValue) {
+              this.searchGrid[material.position] = material;
+            }
+            break;
+            case 'harbor':
+            if (this.grid[material.position].weight  == this.searchedValue) {
               this.searchGrid[material.position] = material;
             }
             break;
@@ -85,6 +96,7 @@ export class HomePage {
         for (var j = 0; j <= 10; j++) {
           var good = material.goods[j];
           if (good != null) {
+            console.log(this.searchedValue);
             switch (this.selectedFilter) {
               case 'nameClient':
                 if (good.nameClient == this.searchedValue) {
@@ -94,11 +106,21 @@ export class HomePage {
               case 'id':
                 if (good.goodId == this.searchedValue) {
                   this.searchGrid[i] = material;
-                  console.log(this.searchGrid[i]);
                 }
                 break;
-              case 'nameGoods':
-                if (good.nameGoods == this.searchedValue) {
+              case 'commodity':
+                if (good.commodity  == this.searchedValue) {
+                  console.log(material);
+                  this.searchGrid[i] = material;
+                }
+                break;
+                case 'weight ':
+                if (good.weight  == this.searchedValue) {
+                  this.searchGrid[i] = material;
+                }
+                break;
+                case 'harbor':
+                if (good.harbor == this.searchedValue) {
                   this.searchGrid[i] = material;
                 }
                 break;
@@ -123,14 +145,15 @@ export class HomePage {
     this.router.navigateByUrl('/detailsitem/' + id);
   }
 
-  amount(id: any) {
+  weight(id: any) {
     this.grid = JSON.parse(sessionStorage.getItem("grid"));
     if (id != null) {
       for (let item of this.allMaterials) {
         if (item != null && item.id == id) {
           var total = 0;
           for (let good of item.goods) {
-            total += good.amount;
+            // total += good.weight;
+            total++;
           }
           return total;
         }
