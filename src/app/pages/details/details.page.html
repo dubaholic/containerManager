@@ -122,7 +122,6 @@
     </ion-row>
   </ion-grid> -->
   <br>
-
   <ion-grid>
     <ion-row>
       <ion-col col-30>
@@ -130,4 +129,19 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <br>
+  <ion-item>
+    <ion-label>Move to coordinate</ion-label>
+    <ion-select [(ngModel)]="coordinate">
+      <ion-select-option *ngFor="let item of coordinates" value="{{item}}">{{item}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-30>
+        <ion-button color="secondary" (click)="jumpToPlace()" href="/"> Jump</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
 </ion-content>

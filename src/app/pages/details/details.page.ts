@@ -16,6 +16,9 @@ export class DetailsPage implements OnInit {
   material: any = [];
   reportedDamage: any = [];
   changedLocation: any = [];
+  coordinate: any;
+  coordinates: any = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4"];
+
   constructor(
     private alertController: AlertController,
     private route: ActivatedRoute,
@@ -26,11 +29,11 @@ export class DetailsPage implements OnInit {
   ngOnInit() {
     this.listId = this.route.snapshot.paramMap.get('listid');
     this.id = this.route.snapshot.paramMap.get('id');
-    
+
     // this.getMaterialData();
 
     /*Call of the this method to get the list on each spot */
-     this.getMaterialDataFromList();
+    this.getMaterialDataFromList();
   }
 
   /*Method to switch locations of certain goods where there is only 1 good on each spot */
@@ -44,7 +47,7 @@ export class DetailsPage implements OnInit {
           if (numberOfplaces > 0) {
             changePosition = item.position + numberOfplaces;
             console.log(changePosition);
-            if (this.grid[changePosition] == null && changePosition <=11) {
+            if (this.grid[changePosition] == null && changePosition <= 11) {
               this.grid[item.position] = null;
               item.position = changePosition;
               this.grid[changePosition] = item;
@@ -57,7 +60,7 @@ export class DetailsPage implements OnInit {
           } else {
             changePosition = item.position + numberOfplaces;
             console.log(changePosition);
-            if (this.grid[changePosition] == null && changePosition <=11) {
+            if (this.grid[changePosition] == null && changePosition <= 11) {
               this.grid[item.position] = null;
               item.position = changePosition;
               this.grid[changePosition] = item;
@@ -67,7 +70,7 @@ export class DetailsPage implements OnInit {
             if (this.grid[changePosition] != null) {
               console.log("Occupied");
             }
-          } 
+          }
         }
       }
     }
@@ -83,12 +86,12 @@ export class DetailsPage implements OnInit {
       if (item != null) {
         if (item.id == this.listId) {
           console.log(item);
-          for(let good of item.goods) {
-            if(good.goodId == this.id) {
+          for (let good of item.goods) {
+            if (good.goodId == this.id) {
               if (numberOfplaces > 0) {
                 changePosition = item.position + numberOfplaces;
                 console.log(changePosition);
-                if (this.grid[changePosition] == null && changePosition <=11) {
+                if (this.grid[changePosition] == null && changePosition <= 11) {
                   this.grid[item.position] = null;
                   item.position = changePosition;
                   this.grid[changePosition] = item;
@@ -102,7 +105,7 @@ export class DetailsPage implements OnInit {
               } else {
                 changePosition = item.position + numberOfplaces;
                 console.log(changePosition);
-                if (this.grid[changePosition] == null && changePosition <=11) {
+                if (this.grid[changePosition] == null && changePosition <= 11) {
                   this.grid[item.position] = null;
                   item.position = changePosition;
                   this.grid[changePosition] = item;
@@ -111,8 +114,8 @@ export class DetailsPage implements OnInit {
                 if (this.grid[changePosition] != null) {
                   console.log("Occupied");
                 }
-              } 
-            } 
+              }
+            }
           }
         }
       }
@@ -137,9 +140,9 @@ export class DetailsPage implements OnInit {
       data.forEach(element => {
         if (element.id == this.listId) {
           this.material = element;
-          for(let item of this.material.goods) {
-            if(item.goodId = this.id) {
-             this.material = item
+          for (let item of this.material.goods) {
+            if (item.goodId = this.id) {
+              this.material = item
               return this.material;
             }
           }
@@ -147,7 +150,7 @@ export class DetailsPage implements OnInit {
       });
     })
   }
-  
+
 
   async showAlert() {
     const alert = await this.alertController.create({
@@ -200,6 +203,73 @@ export class DetailsPage implements OnInit {
     await alert.present();
   }
 
+  jumpToPlace() {
+    switch (this.coordinate) {
+      case 'A1':
+        this.jumpPosition(0);
+        break;
+      case 'A2':
+        this.jumpPosition(1);
+        break;
+      case 'A3':
+        this.jumpPosition(2);
+        break;
+      case 'A4':
+        this.jumpPosition(3);
+        break;
+      case 'B1':
+        this.jumpPosition(4);
+        break;
+      case 'B2':
+        this.jumpPosition(5);
+        break;
+      case 'B3':
+        this.jumpPosition(6);
+        break;
+      case 'B4':
+        this.jumpPosition(7);
+        break;
+        case 'C1':
+        this.jumpPosition(8);
+        break;
+      case 'C2':
+        this.jumpPosition(9);
+        break;
+      case 'C3':
+        this.jumpPosition(10);
+        break;
+      case 'C4':
+        this.jumpPosition(11);
+        break;
+      default:
+        console.log("doesn't work");
+        break;
+    }
+  }
 
-
+  jumpPosition(location: any) {
+    this.id = parseInt(this.route.snapshot.paramMap.get('listid'));
+    this.grid = JSON.parse(sessionStorage.getItem("grid"));
+    for (let item of this.grid) {
+      var changePosition = location;
+      if (item != null) {
+        if (item.id == this.id) {
+          if (location >= 0) {
+            changePosition = location;
+            console.log(changePosition);
+            if (this.grid[changePosition] == null && changePosition <= 11) {
+              this.grid[item.position] = null;
+              item.position = changePosition;
+              this.grid[changePosition] = item;
+              sessionStorage.setItem("grid", JSON.stringify(this.grid));
+              break;
+            }
+            if (this.grid[changePosition] != null) {
+              console.log("Occupied");
+            }
+          } 
+        }
+      }
+    }
+  }
 }
