@@ -14,9 +14,9 @@
       </ion-list-header>
   <ion-item *ngFor='let good of neededGood' [routerLink]="['/details', id, good.goodId]">
     <ion-label>
-      <p>Commodity</p>
+      <p>Details</p>
     </ion-label>
-    <p>{{good.commodity}}</p>
+    <p>{{good.commodity}} of {{good.nameClient}} with destination {{good.harbor}}</p>
     </ion-item>
 </ion-list>
 </ion-content>

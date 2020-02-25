@@ -20,9 +20,9 @@
     </ion-item>
   </ion-header>
   <div class="square-container">
-    <div class="square" *ngFor="let point of grid">
+    <div class="square" *ngFor="let point of grid;">
       <!-- <ion-button *ngIf="point!=null" class="content" (click)="showDetails(point.id)">{{point.weight}}</ion-button> -->
-      <ion-button *ngIf="point!=null" class="content" (click)="showList(point.id)">{{weight(point.id)}}</ion-button>
+      <ion-button *ngIf="point!=null" class="content" (click)="showList(point.id)">{{weight(point.id)}} - {{coordinates[point.position]}}</ion-button>
       <ion-button disabled *ngIf="point==null" class="content">Empty lot</ion-button>
     </div>
   </div>

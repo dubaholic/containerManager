@@ -28,7 +28,7 @@
 		"goods": [
 			{"goodId": 1, "nameClient": "Company4", "commodity": "GoodsB", "weight": 4, "harbor": "Singapore" }
 			],
-		"position": 7,
+		"position": 11,
 		"weight":2
 	}
 ]

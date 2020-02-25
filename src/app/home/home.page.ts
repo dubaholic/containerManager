@@ -12,6 +12,7 @@ export class HomePage {
   xCoordinates: any = [1, 2, 3, 4, 5, 6, 7, 8];
   yCoordinates: any = [1, 2, 3, 4, 5, 6, 7, 8];
 
+  coordinates: any = ["A1", "A2","A3","A4","B1","B2","B3","B4","C1","C2","C3","C4"];
   allMaterials: any = [];
   grid: any[8] = [];
   searchGrid: any[8] = [];
@@ -99,7 +100,7 @@ export class HomePage {
             console.log(this.searchedValue);
             switch (this.selectedFilter) {
               case 'nameClient':
-                if (good.nameClient == this.searchedValue) {
+                if (good.nameClient.toLowerCase() == this.searchedValue.toLowerCase()) {
                   this.searchGrid[i] = material;
                 }
                 break;
@@ -109,7 +110,7 @@ export class HomePage {
                 }
                 break;
               case 'commodity':
-                if (good.commodity  == this.searchedValue) {
+                if (good.commodity.toLowerCase()  == this.searchedValue.toLowerCase()) {
                   console.log(material);
                   this.searchGrid[i] = material;
                 }
@@ -120,7 +121,7 @@ export class HomePage {
                 }
                 break;
                 case 'harbor':
-                if (good.harbor == this.searchedValue) {
+                if (good.harbor.toLowerCase() == this.searchedValue.toLowerCase()) {
                   this.searchGrid[i] = material;
                 }
                 break;
@@ -200,5 +201,7 @@ export class HomePage {
       sessionStorage.clear();
     }
   }
+
+  
 
 }

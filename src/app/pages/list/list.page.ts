@@ -24,6 +24,7 @@ export class ListPage implements OnInit {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.materialsService.getListOfMaterials().subscribe((data) => {
       this.goods = data;
+      console.log(this.goods);
       this.getgoodsOfId(this.id);
     })
   }
