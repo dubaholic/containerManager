@@ -201,7 +201,4 @@ export class HomePage {
       sessionStorage.clear();
     }
   }
-
-  
-
 }

@@ -37,5 +37,4 @@ export class ListPage implements OnInit {
       }
     }
   }
-
 }
