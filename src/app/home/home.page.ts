@@ -12,6 +12,8 @@ export class HomePage {
   xCoordinates: any = [1, 2, 3, 4, 5, 6, 7, 8];
   yCoordinates: any = [1, 2, 3, 4, 5, 6, 7, 8];
 
+
+  counter: any = 0;
   coordinates: any = ["A1", "A2","A3","A4","B1","B2","B3","B4","C1","C2","C3","C4"];
   allMaterials: any = [];
   grid: any[8] = [];
@@ -202,3 +204,4 @@ export class HomePage {
     }
   }
 }
+
