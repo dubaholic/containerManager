@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage  {
 
   xCoordinates: any = [1, 2, 3, 4, 5, 6, 7, 8];
   yCoordinates: any = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -25,8 +25,14 @@ export class HomePage {
   constructor(private materialService: MaterialsService, private router: Router) {
     this.selectedFilter = 'nameClient';
     // this.getAllMaterials();
-
-    this.getAllMaterialsList();
+    this.allMaterials = JSON.parse(sessionStorage.getItem('grid'));
+    if(this.allMaterials == null) {
+      this.getAllMaterialsList();
+    } else {
+      this.fillGrid();
+    }
+    
+    // this.getAllMaterialsList();
   }
 
   getAllMaterials() {
@@ -49,7 +55,7 @@ export class HomePage {
   search() {
     this.grid = JSON.parse(sessionStorage.getItem("grid"));
     this.searchGrid = [];
-    for (var i = 0; i <= 10; i++) {
+    for (var i = 0; i <= 11; i++) {
       var material = this.grid[i];
       if (material != null) {
         switch (this.selectedFilter) {
@@ -99,7 +105,6 @@ export class HomePage {
         for (var j = 0; j <= 10; j++) {
           var good = material.goods[j];
           if (good != null) {
-            console.log(this.searchedValue);
             switch (this.selectedFilter) {
               case 'nameClient':
                 if (good.nameClient.toLowerCase() == this.searchedValue.toLowerCase()) {
@@ -113,7 +118,6 @@ export class HomePage {
                 break;
               case 'commodity':
                 if (good.commodity.toLowerCase()  == this.searchedValue.toLowerCase()) {
-                  console.log(material);
                   this.searchGrid[i] = material;
                 }
                 break;
@@ -151,14 +155,15 @@ export class HomePage {
   weight(id: any) {
     this.grid = JSON.parse(sessionStorage.getItem("grid"));
     if (id != null) {
+      var total = 0;
       for (let item of this.allMaterials) {
         if (item != null && item.id == id) {
-          var total = 0;
+          
           for (let good of item.goods) {
             // total += good.weight;
             total++;
           }
-          return total;
+          return item.goods.length;
         }
       }
     }

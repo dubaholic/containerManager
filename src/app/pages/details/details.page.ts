@@ -86,34 +86,80 @@ export class DetailsPage implements OnInit {
       var changePosition = 0;
       if (item != null) {
         if (item.id == this.listId) {
-          console.log(item);
           for (let good of item.goods) {
             if (good.goodId == this.id) {
+              //movement to the right and down
               if (numberOfplaces > 0) {
                 changePosition = item.position + numberOfplaces;
-                console.log(changePosition);
+                //movement to an empty spot in the grid
                 if (this.grid[changePosition] == null && changePosition <= 11) {
-                  this.grid[item.position] = null;
+                  var object = { id: changePosition, goods: [], position: changePosition, weight: 3 };
+                  object.goods.push(good);
+                  for (let searchgood of this.grid[item.position].goods) {
+                    if (good == searchgood) {
+                      this.grid[item.position].goods.splice(this.grid[item.position].goods.indexOf(searchgood), 1);
+                      break;
+                    }
+                  }
+                    if (this.grid[item.position].goods.length == 0) {
+                    this.grid[item.position] = null;
+                  }
                   item.position = changePosition;
-                  this.grid[changePosition] = item;
+                  this.grid[changePosition] = object;
                   sessionStorage.setItem("grid", JSON.stringify(this.grid));
                   break;
                 }
+                //movement to a not empty spot in the grid
                 if (this.grid[changePosition] != null) {
-                  this.showAlertError();
+                  this.grid[changePosition].goods.push(good);
+                  for (let searchgood of this.grid[item.position].goods) {
+                    if (searchgood == good) {
+                      this.grid[item.position].goods.splice(this.grid[item.position].goods.indexOf(searchgood), 1);
+                    }
+                  }
+                  if (this.grid[item.position].goods.length == 0) {
+                    this.grid[item.position] = null;
+                    // sessionStorage.setItem("grid", JSON.stringify(this.grid));
+                  } sessionStorage.setItem("grid", JSON.stringify(this.grid));
                   
+                  // this.showAlertError();
                 }
-              } else {
+              } 
+              // movement to the left and up
+              else {
                 changePosition = item.position + numberOfplaces;
-                console.log(changePosition);
+                //movement to empty spot
                 if (this.grid[changePosition] == null && changePosition <= 11) {
-                  this.grid[item.position] = null;
+                  var object = { id: changePosition, goods: [], position: changePosition, weight: 3 };
+                  object.goods.push(good);
+                  for (let searchgood of this.grid[item.position].goods) {
+                    if (good == searchgood) {
+                      this.grid[item.position].goods.splice(this.grid[item.position].goods.indexOf(searchgood), 1);
+                      break;
+                    }
+                  }
+                  if (this.grid[item.position].goods.length == 0) {
+                    this.grid[item.position] = null;
+                  }
                   item.position = changePosition;
-                  this.grid[changePosition] = item;
+
+                  this.grid[changePosition] = object;
                   sessionStorage.setItem("grid", JSON.stringify(this.grid));
+                  break;
                 }
+                //movement to not empty spot
                 if (this.grid[changePosition] != null) {
-                  this.showAlertError();
+                  this.grid[changePosition].goods.push(good);
+                  for (let searchgood of this.grid[item.position].goods) {
+                    if (searchgood == good) {
+                      this.grid[item.position].goods.splice(this.grid[item.position].goods.indexOf(searchgood), 1);
+                      break;
+                    }
+                  }
+                  if (this.grid[item.position].goods.length == 0) {
+                    this.grid[item.position] = null;
+                  }
+                  sessionStorage.setItem("grid", JSON.stringify(this.grid));
                 }
               }
             }
@@ -129,7 +175,6 @@ export class DetailsPage implements OnInit {
       data.forEach(element => {
         if (element.id == this.id) {
           this.material = element;
-          console.log(this.material);
         }
       });
     })
@@ -137,13 +182,15 @@ export class DetailsPage implements OnInit {
 
   /*Method to retrieve all the data from a json where each spot contains a list of goods */
   getMaterialDataFromList() {
-    this.materialsService.getListOfMaterials().subscribe((data) => {
+    this.grid = JSON.parse(sessionStorage.getItem('grid'));
+    if(this.grid == null) {
+      this.materialsService.getListOfMaterials().subscribe((data) => {
       data.forEach(element => {
         if (element.id == this.listId) {
           this.material = element;
           for (let item of this.material.goods) {
-            if (item.goodId = this.id) {
-              this.material = item
+            if (item.goodId == this.id) {
+              this.material = item;
               return this.material;
             }
           }
@@ -151,10 +198,25 @@ export class DetailsPage implements OnInit {
       });
     })
   }
+  for(let item of this.grid) {
+    if(item != null) {
+      if(item.id == this.listId) {
+        for(let good of item.goods) {
+          if(good.goodId == this.id ) {
+            this.material = good;
+            return this.material;
+          }
+        }
+      }
+    }
+    
+  }
+    
+  }
 
   async showAlertError() {
     const alert = await this.alertController.create({
-      header:"Error",
+      header: "Error",
       message: "Can't move good to this location",
       buttons: [
         {
@@ -245,7 +307,7 @@ export class DetailsPage implements OnInit {
       case 'B4':
         this.jumpPosition(7);
         break;
-        case 'C1':
+      case 'C1':
         this.jumpPosition(8);
         break;
       case 'C2':
@@ -285,7 +347,7 @@ export class DetailsPage implements OnInit {
               this.showAlertError();
               break;
             }
-          } 
+          }
         }
       }
     }

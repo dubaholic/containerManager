@@ -11,7 +11,7 @@ export class ListPage implements OnInit {
 
   constructor(private materialsService: MaterialsService, private route: ActivatedRoute, private router: Router) { }
 
-  goods:any;
+  goods: any;
   id: any;
   neededGood: any;
 
@@ -22,24 +22,33 @@ export class ListPage implements OnInit {
   getListOfGoods() {
     this.goods = [];
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.materialsService.getListOfMaterials().subscribe((data) => {
-      this.goods = data;
-      console.log(this.goods);
-      this.getgoodsOfId(this.id);
-    })
+    this.goods = JSON.parse(sessionStorage.getItem("grid"));
+    
+    if (this.goods == null) {
+      this.materialsService.getListOfMaterials().subscribe((data) => {
+        this.goods = data;
+        this.getgoodsOfId(this.id);
+      })
+    }
+
+    this.getgoodsOfId(this.id);
+
   }
 
   details(id: any, goodId: any) {
-    this.router.navigateByUrl('/details/'+ id +"/" + goodId);
-    
+    this.router.navigateByUrl('/details/' + id + "/" + goodId);
+
   }
 
   getgoodsOfId(id: any) {
-    for(let item of this.goods) {
-      if(item.id == id) {
-        this.neededGood = item.goods;
-        sessionStorage.setItem(id, JSON.stringify(item.goods));
+    for (let item of this.goods) {
+      if (item != null) {
+        if (item.id == id) {
+          this.neededGood = item.goods;
+          sessionStorage.setItem(id, JSON.stringify(item.goods));
+        }
       }
+
     }
   }
 }

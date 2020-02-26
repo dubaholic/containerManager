@@ -2,7 +2,8 @@
     {
 		"id": 1,
 		"goods": [
-			{"goodId": 1, "nameClient": "Company2", "commodity": "GoodsA", "weight": 3, "harbor": "philadelphia" }
+			{"goodId": 1, "nameClient": "Company2", "commodity": "GoodsA", "weight": 3, "harbor": "Philadelphia" },
+			{"goodId": 2, "nameClient": "Company8", "commodity": "GoodsD", "weight": 3, "harbor": "Hamburg" }
 			],
 		"position": 1,
 		"weight":3
@@ -10,23 +11,34 @@
 	{
 		"id": 3,
 		"goods": [
-			{"goodId": 1, "nameClient": "Company1", "commodity": "GoodsD", "weight": 4, "harbor": "Singapore" }
+			{"goodId": 3, "nameClient": "Company1", "commodity": "GoodsD", "weight": 4, "harbor": "Singapore" },
+			{"goodId": 4, "nameClient": "Company4", "commodity": "GoodsC", "weight": 4, "harbor": "Hamburg" }
 			],
 		"position": 3,
 		"weight":3
 	},
 	{
-		"id": 7,
+		"id": 6,
 		"goods": [
-			{"goodId": 1, "nameClient": "Company3", "commodity": "GoodsC", "weight": 5, "harbor": "Hamburg" }
+			{"goodId": 7, "nameClient": "Company3", "commodity": "GoodsC", "weight": 5, "harbor": "Hamburg" }
 			],
-		"position": 7,
+		"position": 6,
+		"weight":3
+	},
+	{
+		"id": 9,
+		"goods": [
+			{"goodId": 5, "nameClient": "Company5", "commodity": "GoodsD", "weight": 5, "harbor": "Shanghai"},
+			{"goodId": 6, "nameClient": "Company3", "commodity": "GoodsC", "weight": 5, "harbor": "Shanghai"}
+			],
+		"position": 9,
 		"weight":3
 	},
 	{
 		"id": 11,
 		"goods": [
-			{"goodId": 1, "nameClient": "Company4", "commodity": "GoodsB", "weight": 4, "harbor": "Singapore" }
+			{"goodId": 8, "nameClient": "Company4", "commodity": "GoodsB", "weight": 4, "harbor": "Singapore" },
+			{"goodId": 9, "nameClient": "Company6", "commodity": "GoodsC", "weight": 4, "harbor": "Rotterdam" }
 			],
 		"position": 11,
 		"weight":2
