@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialsService } from 'src/app/services/materials.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListPage implements OnInit {
 
-  constructor(private materialsService: MaterialsService, private route: ActivatedRoute) { }
+  constructor(private materialsService: MaterialsService, private route: ActivatedRoute, private router: Router) { }
 
   goods:any;
   id: any;
@@ -27,6 +27,11 @@ export class ListPage implements OnInit {
       console.log(this.goods);
       this.getgoodsOfId(this.id);
     })
+  }
+
+  details(id: any, goodId: any) {
+    this.router.navigateByUrl('/details/'+ id +"/" + goodId);
+    
   }
 
   getgoodsOfId(id: any) {

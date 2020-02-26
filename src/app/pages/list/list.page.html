@@ -10,13 +10,48 @@
 <ion-content>
   <ion-list lines="none">
     <ion-list-header>
-        <ion-label>List of goods with id {{id}}</ion-label>
-      </ion-list-header>
-  <ion-item *ngFor='let good of neededGood' [routerLink]="['/details', id, good.goodId]">
-    <ion-label>
-      <p>Details</p>
-    </ion-label>
-    <p>{{good.commodity}} of {{good.nameClient}} with destination {{good.harbor}}</p>
-    </ion-item>
-</ion-list>
+      <ion-label>List of goods with id {{id}}</ion-label>
+    </ion-list-header>
+    <!-- <ion-item *ngFor='let good of neededGood' [routerLink]="['/details', id, good.goodId]">
+      <ion-label>
+        <p>Details</p>
+      </ion-label>
+      <p>{{good.commodity}} of {{good.nameClient}} with destination {{good.harbor}}</p>
+    </ion-item> -->
+  </ion-list>
+
+  <ion-grid>
+    <ion-row class="tableHeaders">
+      <ion-col>
+        Commodity
+      </ion-col>
+      <ion-col text-right>
+        Name of the client
+      </ion-col>
+      <ion-col text-right>
+        Destination harbor
+      </ion-col>
+      <ion-col text-right>
+        Details
+      </ion-col>
+    </ion-row>
+    <div>
+      <ion-row *ngFor="let value of neededGood">
+        <ion-col>
+          {{value.commodity}}
+        </ion-col>
+        <ion-col text-right>
+          {{value.nameClient}}
+        </ion-col>
+        <ion-col text-right>
+          {{value.harbor}}
+        </ion-col>
+        <ion-col text-right>
+          <ion-button (click)="details(id, value.goodId)">
+            Details
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
 </ion-content>
