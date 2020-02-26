@@ -130,7 +130,7 @@
     </ion-row>
   </ion-grid>
   <br>
-  <ion-item>
+  <ion-item class="dropdown">
     <ion-label>Move to coordinate</ion-label>
     <ion-select [(ngModel)]="coordinate">
       <ion-select-option *ngFor="let item of coordinates" value="{{item}}">{{item}}</ion-select-option>
