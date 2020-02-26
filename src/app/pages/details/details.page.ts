@@ -46,29 +46,30 @@ export class DetailsPage implements OnInit {
         if (item.id == this.id) {
           if (numberOfplaces > 0) {
             changePosition = item.position + numberOfplaces;
-            console.log(changePosition);
             if (this.grid[changePosition] == null && changePosition <= 11) {
               this.grid[item.position] = null;
               item.position = changePosition;
               this.grid[changePosition] = item;
               sessionStorage.setItem("grid", JSON.stringify(this.grid));
+              this.router.navigateByUrl('/');
               break;
             }
             if (this.grid[changePosition] != null) {
-              console.log("Occupied");
+              this.showAlertError();
             }
           } else {
             changePosition = item.position + numberOfplaces;
-            console.log(changePosition);
             if (this.grid[changePosition] == null && changePosition <= 11) {
               this.grid[item.position] = null;
               item.position = changePosition;
               this.grid[changePosition] = item;
               console.log(this.grid);
               sessionStorage.setItem("grid", JSON.stringify(this.grid));
+              this.router.navigateByUrl('/');
+              break;
             }
             if (this.grid[changePosition] != null) {
-              console.log("Occupied");
+              this.showAlertError();
             }
           }
         }
@@ -99,8 +100,8 @@ export class DetailsPage implements OnInit {
                   break;
                 }
                 if (this.grid[changePosition] != null) {
-                  console.log("Occupied");
-                  break;
+                  this.showAlertError();
+                  
                 }
               } else {
                 changePosition = item.position + numberOfplaces;
@@ -112,7 +113,7 @@ export class DetailsPage implements OnInit {
                   sessionStorage.setItem("grid", JSON.stringify(this.grid));
                 }
                 if (this.grid[changePosition] != null) {
-                  console.log("Occupied");
+                  this.showAlertError();
                 }
               }
             }
@@ -151,6 +152,21 @@ export class DetailsPage implements OnInit {
     })
   }
 
+  async showAlertError() {
+    const alert = await this.alertController.create({
+      header:"Error",
+      message: "Can't move good to this location",
+      buttons: [
+        {
+          text: 'Confirm',
+          handler: () => {
+          }
+        }
+      ]
+    })
+
+    await alert.present();
+  }
 
   async showAlert() {
     const alert = await this.alertController.create({
@@ -262,10 +278,12 @@ export class DetailsPage implements OnInit {
               item.position = changePosition;
               this.grid[changePosition] = item;
               sessionStorage.setItem("grid", JSON.stringify(this.grid));
+              this.router.navigateByUrl('/');
               break;
             }
             if (this.grid[changePosition] != null) {
-              console.log("Occupied");
+              this.showAlertError();
+              break;
             }
           } 
         }
