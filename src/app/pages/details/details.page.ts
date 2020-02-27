@@ -104,7 +104,7 @@ export class DetailsPage implements OnInit {
                     if (this.grid[item.position].goods.length == 0) {
                     this.grid[item.position] = null;
                   }
-                  item.position = changePosition;
+                  // item.position = changePosition;
                   this.grid[changePosition] = object;
                   sessionStorage.setItem("grid", JSON.stringify(this.grid));
                   break;
@@ -141,7 +141,7 @@ export class DetailsPage implements OnInit {
                   if (this.grid[item.position].goods.length == 0) {
                     this.grid[item.position] = null;
                   }
-                  item.position = changePosition;
+                  // item.position = changePosition;
 
                   this.grid[changePosition] = object;
                   sessionStorage.setItem("grid", JSON.stringify(this.grid));
@@ -349,7 +349,7 @@ export class DetailsPage implements OnInit {
                 if (this.grid[item.position].goods.length == 0) {
                   this.grid[item.position] = null;
                 }
-                item.position = changePosition;
+                // item.position = changePosition;
                 this.grid[changePosition] = object;
                 sessionStorage.setItem("grid", JSON.stringify(this.grid));
                 break;

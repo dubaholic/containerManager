@@ -99,10 +99,10 @@ export class HomePage  {
   searchList() {
     this.grid = JSON.parse(sessionStorage.getItem("grid"));
     this.searchGrid = [];
-    for (var i = 0; i <= 10; i++) {
+    for (var i = 0; i <= 11; i++) {
       var material = this.grid[i];
       if (material != null) {
-        for (var j = 0; j <= 10; j++) {
+        for (var j = 0; j <= 11; j++) {
           var good = material.goods[j];
           if (good != null) {
             switch (this.selectedFilter) {
@@ -140,6 +140,7 @@ export class HomePage  {
         }
       } this.searchGrid.push(null);
     }
+    this.searchGrid.pop();
     sessionStorage.setItem("searchGrid", JSON.stringify(this.searchGrid));
     this.fillSearchGrid();
   }
@@ -158,7 +159,6 @@ export class HomePage  {
       var total = 0;
       for (let item of this.allMaterials) {
         if (item != null && item.id == id) {
-          
           for (let good of item.goods) {
             // total += good.weight;
             total++;
