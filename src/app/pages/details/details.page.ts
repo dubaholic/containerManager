@@ -332,22 +332,45 @@ export class DetailsPage implements OnInit {
       var changePosition = location;
       if (item != null) {
         if (item.id == this.id) {
-          if (location >= 0) {
-            changePosition = location;
-            console.log(changePosition);
-            if (this.grid[changePosition] == null && changePosition <= 11) {
-              this.grid[item.position] = null;
-              item.position = changePosition;
-              this.grid[changePosition] = item;
-              sessionStorage.setItem("grid", JSON.stringify(this.grid));
-              this.router.navigateByUrl('/');
-              break;
-            }
-            if (this.grid[changePosition] != null) {
-              this.showAlertError();
-              break;
+          for(let good of item.goods) {
+            console.log(good);
+            if (location >= 0) {
+              changePosition = location;
+              //spot is empty
+              if (this.grid[changePosition] == null && changePosition <= 11) {
+                var object = {id: changePosition, goods: [], position: changePosition, weight:3};
+                object.goods.push(good);
+                for (let searchgood of this.grid[item.position].goods) {
+                  if (good == searchgood) {
+                    this.grid[item.position].goods.splice(this.grid[item.position].goods.indexOf(searchgood), 1);
+                    break;
+                  }
+                }
+                if (this.grid[item.position].goods.length == 0) {
+                  this.grid[item.position] = null;
+                }
+                item.position = changePosition;
+                this.grid[changePosition] = object;
+                sessionStorage.setItem("grid", JSON.stringify(this.grid));
+                break;
+              }
+              //spot is not empty
+              if (this.grid[changePosition] != null) {
+                this.grid[changePosition].goods.push(good);
+                  for (let searchgood of this.grid[item.position].goods) {
+                    if (searchgood == good) {
+                      this.grid[item.position].goods.splice(this.grid[item.position].goods.indexOf(searchgood), 1);
+                      break;
+                    }
+                  }
+                  if (this.grid[item.position].goods.length == 0) {
+                    this.grid[item.position] = null;
+                  }
+                  sessionStorage.setItem("grid", JSON.stringify(this.grid));
+              }
             }
           }
+          
         }
       }
     }
